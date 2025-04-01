@@ -45,7 +45,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-5xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-12 text-gray-800 dark:text-gray-100">
         <div className="flex justify-center mb-8">
-          <Image src="/logo.png" alt="Logo" width={300} height={auto} className="object-contain max-h-20 w-auto" />
+          <Image src="/logo.png" alt="Logo" width={300} height={80} className="object-contain max-h-20 w-auto" />
         </div>
 
         <h1 className="text-4xl font-bold mb-10 text-center">AluWood Rechner</h1>
