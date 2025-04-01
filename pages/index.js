@@ -1,9 +1,8 @@
+
 import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
-  console.log('LOADED');
-
   const [breite, setBreite] = useState('');
   const [hoehe, setHoehe] = useState('');
   const [farbe, setFarbe] = useState('braun geölt');
@@ -28,14 +27,16 @@ export default function Home() {
     const anzahlPaneele = Math.ceil(b / paneelBreite);
     const einzelpreis = parseFloat(((h / standardLaenge) * farbpreise[farbe]).toFixed(2));
     const gesamtpreis = parseFloat((anzahlPaneele * einzelpreis).toFixed(2));
-    const flaeche = +(b * h).toFixed(2);
-    const preisProM2 = +(gesamtpreis / flaeche).toFixed(2);
+    const paneelFlaeche = +(paneelBreite * h).toFixed(4);
+    const gesamtFlaeche = +(anzahlPaneele * paneelFlaeche).toFixed(2);
+    const preisProM2 = +(gesamtpreis / gesamtFlaeche).toFixed(2);
 
     setErgebnis({
       anzahlPaneele,
       einzelpreis,
       gesamtpreis,
-      flaeche,
+      paneelFlaeche,
+      gesamtFlaeche,
       preisProM2,
     });
   };
@@ -44,7 +45,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-5xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-12 text-gray-800 dark:text-gray-100">
         <div className="flex justify-center mb-8">
-          <Image src="/logo.png" alt="Logo" width={260} height={60} className="object-contain" />
+          <Image src="/logo.png" alt="Logo" width={220} height={60} className="object-contain" />
         </div>
 
         <h1 className="text-4xl font-bold mb-10 text-center">AluWood Rechner</h1>
@@ -93,8 +94,9 @@ export default function Home() {
             <div><strong>Anzahl Paneele:</strong> {ergebnis.anzahlPaneele}</div>
             <div><strong>Einzelpreis:</strong> {ergebnis.einzelpreis} €</div>
             <div><strong>Gesamtpreis:</strong> {ergebnis.gesamtpreis} €</div>
-            <div><strong>Fläche:</strong> {ergebnis.flaeche} m²</div>
-            <div><strong>Preis pro m²:</strong> {ergebnis.preisProM2} €</div>
+            <div><strong>Paneel-Fläche:</strong> {ergebnis.paneelFlaeche} m²</div>
+            <div><strong>Gesamtfläche berechnet:</strong> {ergebnis.gesamtFlaeche} m²</div>
+            <div><strong>Preis pro m² (echte Fläche):</strong> {ergebnis.preisProM2} €</div>
           </div>
         )}
       </div>
